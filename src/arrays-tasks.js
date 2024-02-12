@@ -356,8 +356,23 @@ function calculateBalance(arr) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* =arr, chunkSize */) {
-  throw new Error('Not implemented');
+function createChunks(arr, chunkSize) {
+  const result = [];
+  let chunk = [];
+
+  arr.map((el, i) => {
+    if (chunk.length === chunkSize) {
+      result.push(chunk);
+      chunk = [];
+    }
+    chunk.push(el);
+    if (i === arr.length - 1) {
+      result.push(chunk);
+    }
+    return el;
+  });
+
+  return result;
 }
 
 /**
@@ -372,8 +387,10 @@ function createChunks(/* =arr, chunkSize */) {
  *    generateOdds(2) => [ 1, 3 ]
  *    generateOdds(5) => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  return Array(len)
+    .fill(1)
+    .map((el, i) => 1 + 2 * i);
 }
 
 /**
